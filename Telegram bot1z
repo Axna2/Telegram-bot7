@@ -1,0 +1,721 @@
+<?php
+
+ob_start();
+$API_KEY = '5825675661:AAF_iNJmpvuXELMpufSpg6mMkKQRzpBTW9Q';
+$sudo = array( 175279237);
+$chj = "@ALICQJ";
+$cht = "👋🏻┇اهلا بك عزيزي
+🔘┇ليمكنك استخدام البوت
+⚠️┇عليك الاشتراك في القناة
+lاضغط هنا للدخول للقناة
+📡┇ @ALICQJ";
+//////////////////////
+define('API_KEY',$API_KEY);
+function bot($method,$datas=[]){
+$url = "https://api.telegram.org/bot".API_KEY."/".$method;
+$ch = curl_init();
+curl_setopt($ch,CURLOPT_URL,$url); curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch,CURLOPT_POSTFIELDS,$datas);
+$res = curl_exec($ch);
+if(curl_error($ch)){
+var_dump(curl_error($ch));
+}else{return json_decode($res);}}
+//////////////////////
+$update = json_decode(file_get_contents('php://input'));
+$message = $update->message;
+$text = $message->text;
+$chat_id = $message->chat->id;
+$from_id = $message->from->id;
+$user = file_get_contents('users.txt');$meid = explode("\n",$user);$mc = count($meid) -1;
+if($text == "الاعضاء" && in_array($from_id, $sudo)){
+    bot('sendMessage',[
+      'chat_id'=>$chat_id,
+      'text'=>"- عدد الاعضاء هوه ؛ $mc",]);}
+if ($message) {
+$user = file_get_contents('users.txt');
+    $members = explode("\n",$user);
+    if (!in_array($from_id,$members)){
+      $add_user = file_get_contents('users.txt');
+      $add_user .= $from_id."\n";
+file_put_contents('users.txt',$add_user);}}
+$join = file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=$chj&user_id=".$from_id);
+if($message && (strpos($join,'"status":"left"') or strpos($join,'"Bad Request: USER_ID_INVALID"') or strpos($join,'"status":"kicked"'))!== false){
+bot('sendMessage', [
+'chat_id'=>$chat_id,
+'text'=>"$cht",
+]);return false;}
+if($text == "/start"){
+bot('sendmessage', ['chat_id' => $chat_id,'text' =>"ﭑلـسلہﺎم ؏ـلڪمہ⁽💛🌸
+♻️تحديث V5 جاري…V6🌀
+
+• الان اصبح يزغرف 31 شكل ويدعم انكلش وعربي
+• اهلا وسهلا 😃👋بوت الذي يزغرفلك 31 شكل  •
+• بوت الزخرفهہ الاول ؏ التيليجرام •
+• ارسل الاسم انكلش او عربي المراد زخرفته وستتم زخرفته مباشرا الئ 28شكل 
+تابع جديدنا للبوتات @ALICQJ  •  ، ✅",]);}
+if($text != '/start'and$text!='/us'){
+  $items = [' •🌱💚﴿ֆ ❥', '🍿﴿ֆ ❥', '• 🌸💸 ❥˓  ', '🖤🌞﴿ֆ', ' • 🐼🌿﴾ֆ', ' •🙊💙﴿ֆ ❥', '-💁🏼‍♂️✨﴿ֆ ❥ ', '•|• 〄💖‘',
+                        ' ⚡️🌞 •|•℡', '- ⁽🙆‍♂️✨₎ֆ', '❥┇💁🏼‍♂️🔥“', '💜💭℡ֆ', '-┆💙🙋🏼‍♂️♕', '- ⁽🙆🏻🍿₎ֆ',
+                        '“̯ 🐼💗 |℡', '⁞ 🐝🍷', '┋⁽❥̚͢₎ 🐣💗', '•|• ✨🌸‘', '  ֆ 💭💔ۦ', 'ֆ 💛💭ۦ', 'ֆ ⚡️🔱ۦ',
+                        '℡ᴖ̈💜✨⋮', '⋮⁽🌔☄️₎ۦ˛', '⁞❉💥┋♩', ' ⁞✦⁽☻🔥₎“ٰۦ', '℡ ̇₎ ✨🐯⇣✦', '⁞♩⁽🌞🌩₎⇣✿',
+                        'ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿💥😈 ⁞“❥', '😴🌸✿⇣', '❥┊⁽ ℡🦁🌸'];
+  $_smile = array_rand($items,1);
+  $smile = $items[$_smile];
+   $count = count($text); 
+   $k = str_replace('ض', 'ضِـٰٚـِْ✮ِـٰٚـِْ', $text);
+   $k = str_replace('ص', 'صِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ث', 'ثِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ق', 'قِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ف', 'فِ͒ـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('غ', 'غِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ع', 'عِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('خ', 'خِ̐ـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ح', 'حِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ج', 'جِـٰٚـِ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ش', 'شِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('س', 'سِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ي', 'يِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ب', 'بِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ل', 'لِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ن', 'نِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('م', 'مِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ك', 'ڪِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ط', 'طِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ذ', 'ذِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ظ', 'ظِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('ظ', 'ظِـٰٚـِْ✮ِـٰٚـِْ', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "ۿۿہ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]);
+   $k = $text;
+   $k = str_replace('ض', 'ض͜ــ๋͜ـ', $k);
+   $k = str_replace('ص', 'ص͜ــ๋͜ـ', $k);
+   $k = str_replace('ث', 'ث͜ــ๋͜ـ͜ــ๋͜ـ', $k);
+   $k = str_replace('ق', 'ق͜ــ๋͜ـ', $k);
+   $k = str_replace('ف', 'ف͒͜ــ๋͜ـ', $k);
+   $k = str_replace('غ', 'غ͜ــ๋͜ـ', $k);
+   $k = str_replace('ع', 'ع͜ــ๋͜ـ', $k);
+   $k = str_replace('خ', 'خ̐͜ــ๋͜ـ', $k);
+   $k = str_replace('ح', 'ح͜ــ๋͜ـ', $k);
+   $k = str_replace('ج', 'ج͜ــ๋͜ـ', $k);
+   $k = str_replace('ش', 'ش͜ــ๋͜ـ', $k);
+   $k = str_replace('س', 'س͜ــ๋͜ـ', $k);
+   $k = str_replace('ي', 'ي͜ــ๋͜ـ', $k);
+   $k = str_replace('ب', 'ب͜ــ๋͜ـ', $k);
+   $k = str_replace('ل', 'ل͜ــ๋͜ـ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'ت͜ــ๋͜ـ', $k);
+   $k = str_replace('ن', 'ن͜ــ๋͜ـ', $k);
+   $k = str_replace('م', 'م͜ــ๋͜ـ', $k);
+   $k = str_replace('ك', 'ڪ͜ــ๋͜ـ', $k);
+   $k = str_replace('ط', 'ط͜ــ๋͜ـ', $k);
+   $k = str_replace('ظ', 'ظ͜ــ๋͜ـ', $k);
+   $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('ظ', 'ظــ๋͜ـ', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "ۿۿہ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]);
+   $k = $text;
+   $k = str_replace('ض', 'ضِـೋـ', $k);
+   $k = str_replace('ص', 'صِـೋـ', $k);
+   $k = str_replace('ث', 'ثِـೋـ', $k);
+   $k = str_replace('ق', 'قِـೋـ', $k);
+   $k = str_replace('ف', 'فِ͒ـೋـ', $k);
+   $k = str_replace('غ', 'غِـೋـ', $k);
+   $k = str_replace('ع', 'عِـೋـ', $k);
+   $k = str_replace('خ', 'خِ̐ـೋـ', $k);
+   $k = str_replace('ح', 'حِـೋـ', $k);
+   $k = str_replace('ج', 'جِـೋـ', $k);
+   $k = str_replace('ش', 'شِـೋـ', $k);
+   $k = str_replace('س', 'سِـೋـ', $k);
+   $k = str_replace('ي', 'يِـೋـ', $k);
+   $k = str_replace('ب', 'بِـೋـ', $k);
+   $k = str_replace('ل', 'لِـೋـ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تِـೋـ', $k);
+   $k = str_replace('ن', 'نِـೋـ', $k);
+   $k = str_replace('م', 'مِـೋـ', $k);
+   $k = str_replace('ك', 'ڪِـೋـ', $k);
+   $k = str_replace('ط', 'طِـೋـ', $k);
+   $k = str_replace('ظ', 'ظِـೋـ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "ۿۿہ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]);
+   $k = str_replace('ض', 'ضـ๋͜‏ـ', $text);
+   $k = str_replace('ص', 'صـ๋͜‏ـ', $k);
+   $k = str_replace('ث', 'ثـ๋͜‏ـ', $k);
+   $k = str_replace('ق', 'قـ๋͜‏ـ', $k);
+   $k = str_replace('ف', 'ف͒ـ๋͜‏ـ', $k);
+   $k = str_replace('غ', 'غـ๋͜‏ـ', $k);
+   $k = str_replace('ع', 'عـ๋͜‏ـ', $k);
+   $k = str_replace('خ', 'خ̐ـ๋͜‏ـ', $k);
+   $k = str_replace('ح', 'حـ๋͜‏ـ', $k);
+   $k = str_replace('ج', 'جـ๋͜‏ـ', $k);
+   $k = str_replace('ش', 'شـ๋͜‏ـ', $k);
+   $k = str_replace('س', 'سـ๋͜‏ـ', $k);
+   $k = str_replace('ي', 'يـ๋͜‏ـ', $k);
+   $k = str_replace('ب', 'بـ๋͜‏ـ', $k);
+   $k = str_replace('ل', 'لـ๋͜‏ـ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تـ๋͜‏ـ', $k);
+   $k = str_replace('ن', 'نـ๋͜‏ـ', $k);
+   $k = str_replace('م', 'مـ๋͜‏ـ', $k);
+   $k = str_replace('ك', 'ڪـ๋͜‏ـ', $k);
+   $k = str_replace('ط', 'طـ๋͜‏ـ', $k);
+   $k = str_replace('ظ', 'ظـ๋͜‏ـ', $k);
+$k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "ۿۿہ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+$k = $text;
+   $k = str_replace('ض', 'ضہ', $k);
+   $k = str_replace('ص', 'صہ', $k);
+   $k = str_replace('ث', 'ثہ', $k);
+   $k = str_replace('ق', 'قہ', $k);
+   $k = str_replace('ف', 'فہ', $k);
+   $k = str_replace('غ', 'غہ', $k);
+   $k = str_replace('ع', 'عہ', $k);
+   $k = str_replace('خ', 'خہ', $k);
+   $k = str_replace('ح', 'حہ', $k);
+   $k = str_replace('ج', 'جہ', $k);
+   $k = str_replace('ش', 'شہ', $k);
+   $k = str_replace('س', 'سہ', $k);
+   $k = str_replace('ي', 'يہ', $k);
+   $k = str_replace('ب', 'بہ', $k);
+   $k = str_replace('ل', 'ل', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تہ', $k);
+   $k = str_replace('ن', 'نہ', $k);
+   $k = str_replace('م', 'مہ', $k);
+   $k = str_replace('ك', 'كہ', $k);
+   $k = str_replace('ط', 'طہ', $k);
+   $k = str_replace('ظ', 'ظہ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "ۿۿہ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+$k = $text;
+   $k = str_replace('ض', 'ﺿ', $k);
+   $k = str_replace('ص', 'ﺻ', $k);
+   $k = str_replace('ث', 'ﺚ', $k);
+   $k = str_replace('ق', 'ﭱ', $k);
+   $k = str_replace('ف', 'ﭫ', $k);
+   $k = str_replace('غ', 'ڠ', $k);
+   $k = str_replace('؏', 'ع', $k);
+   $k = str_replace('خ', 'ݗ', $k);
+   $k = str_replace('ح', 'ﺢ', $k);
+   $k = str_replace('ج', 'ݘ', $k);
+   $k = str_replace('ش', 'ﺸ', $k);
+   $k = str_replace('س', 'ﺴ', $k);
+   $k = str_replace('ي', 'ﯥ', $k);
+   $k = str_replace('ب', 'ﭘ', $k);
+   $k = str_replace('ل', 'ڸ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'ٿ', $k);
+   $k = str_replace('ن', 'ﮡ', $k);
+   $k = str_replace('م', 'ﻢ', $k);
+   $k = str_replace('ك', 'ﮗ', $k);
+   $k = str_replace('ط', 'ﻂ', $k);
+   $k = str_replace('ظ', 'ﻆ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "ۿۿہ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+$k = $text;
+   $k = str_replace('ض', 'ضہ❀๋͜ـ', $k);
+   $k = str_replace('ص', 'صہ❀๋͜ـ', $k);
+   $k = str_replace('ث', 'ثہ❀๋͜ـ', $k);
+   $k = str_replace('ق', 'قہ❀๋͜ـ', $k);
+   $k = str_replace('ف', 'فہ❀๋͜ـ', $k);
+   $k = str_replace('غ', 'غہ❀๋͜ـ', $k);
+   $k = str_replace('ع', 'عہ❀๋͜ـ', $k);
+   $k = str_replace('خ', 'خہ❀๋͜ـ', $k);
+   $k = str_replace('ح', 'حہ❀๋͜ـ', $k);
+   $k = str_replace('ج', 'جہ❀๋͜ـ', $k);
+   $k = str_replace('ش', 'شہ❀๋͜ـ', $k);
+   $k = str_replace('س', 'سہ❀๋͜ـ', $k);
+   $k = str_replace('ي', 'يہ❀๋͜ـ', $k);
+   $k = str_replace('ب', 'بہ❀๋͜ـ', $k);
+   $k = str_replace('ل', 'ل❀๋͜ـ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تہ❀๋͜ـ', $k);
+   $k = str_replace('ن', 'نہ❀๋͜ـ', $k);
+   $k = str_replace('م', 'مہ❀๋͜ـ', $k);
+   $k = str_replace('ك', 'كہ❀๋͜ـ', $k);
+   $k = str_replace('ط', 'طہ❀๋͜ـ', $k);
+   $k = str_replace('ظ', 'ظہ❀๋͜ـ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "໋۠هہؚ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+   $k = $text;
+   $k = str_replace('ض', 'ضِٰـِۢ', $k);
+   $k = str_replace('ص', 'صِٰـِۢ', $k);
+   $k = str_replace('ث', 'ثِٰـِۢ', $k);
+   $k = str_replace('ق', 'قِٰـِۢ', $k);
+   $k = str_replace('ف', 'فِٰ͒ـِۢ', $k);
+   $k = str_replace('غ', 'غِٰـِۢ', $k);
+   $k = str_replace('ع', 'عِٰـِۢ', $k);
+   $k = str_replace('خ', 'خِٰ̐ـِۢ', $k);
+   $k = str_replace('ح', 'حِٰـِۢ', $k);
+   $k = str_replace('ج', 'جِٰـِۢ', $k);
+   $k = str_replace('ش', 'شِٰـِۢ', $k);
+   $k = str_replace('س', 'سِٰـِۢ', $k);
+   $k = str_replace('ي', 'يِٰـِۢ', $k);
+   $k = str_replace('ب', 'بِٰـِۢ', $k);
+   $k = str_replace('ل', 'لِٰـِۢ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تِٰـِۢ', $k);
+   $k = str_replace('ن', 'نِٰـِۢ', $k);
+   $k = str_replace('م', 'مِٰـِۢ', $k);
+   $k = str_replace('ك', 'ڪِٰـِۢ', $k);
+   $k = str_replace('ط', 'طِٰـِۢ', $k);
+   $k = str_replace('ظ', 'ظِٰـِۢ', $k);
+   $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "ۿۿہ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+$k = $text;
+   $k = str_replace('ض', 'Ь̇', $k);
+   $k = str_replace('ص', 'ᘗ', $k);
+   $k = str_replace('ث', 'ث͜ــ๋͜ـ͜ــ๋͜ـ', $k);
+   $k = str_replace('ق', 'ᓆ', $k);
+   $k = str_replace('ف', 'ᓅ', $k);
+   $k = str_replace('غ', 'ϛ۬', $k);
+   $k = str_replace('ع', 'ϛ', $k);
+   $k = str_replace('خ', 'ᓘ', $k);
+   $k = str_replace('ح', 'ᓗ', $k);
+   $k = str_replace('ج', 'ᓗฺ', $k);
+   $k = str_replace('ش', 'ɹɹ̈̇ɹ', $k);
+   $k = str_replace('س', 'ɹɹɹ', $k);
+   $k = str_replace('ي', 'ɹ̤', $k);
+   $k = str_replace('ب', 'ɹ̣', $k);
+   $k = str_replace('ل', '⅃', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'ɹ̈', $k);
+   $k = str_replace('ن', 'ᓢ', $k);
+   $k = str_replace('م', 'ᓄ', $k);
+   $k = str_replace('ك', '丂', $k);
+   $k = str_replace('ط', 'ط͜ــ๋͜ـ', $k);
+   $k = str_replace('ظ', 'Ь', $k);
+   $k = str_replace('ذ', 'כ֗', $k);
+   $k = str_replace('د', 'כ', $k);
+   $k = str_replace('ر', 'ȷ', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'j', $k);
+   $k = str_replace('ظ', 'ᘞ̇', $k);
+   $k = str_replace('و', 'g', $k);
+   $k = str_replace("ه", "බ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+   $k = $text;
+   $k = str_replace('ض', 'ضَٰـُـٰٓ', $k);
+   $k = str_replace('ص', 'صَٰـُـٰٓ', $k);
+   $k = str_replace('ث', 'ثَٰـُـٰٓ', $k);
+   $k = str_replace('ق', 'قَٰـُـٰٓ', $k);
+   $k = str_replace('ف', 'فَٰ͒ـُـٰٓ', $k);
+   $k = str_replace('غ', 'غَٰـُـٰٓ', $k);
+   $k = str_replace('ع', 'عَٰـُـٰٓ', $k);
+   $k = str_replace('خ', 'خَٰ̐ـُـٰٓ', $k);
+   $k = str_replace('ح', 'حَٰـُـٰٓ', $k);
+   $k = str_replace('ج', 'جَٰـُـٰٓ', $k);
+   $k = str_replace('ش', 'شَٰـُـٰٓ', $k);
+   $k = str_replace('س', 'سَٰـُـٰٓ', $k);
+   $k = str_replace('ي', 'يَٰـُـٰٓ', $k);
+   $k = str_replace('ب', 'بَٰـُـٰٓ', $k);
+   $k = str_replace('ل', 'لَٰـُـٰٓ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تَٰـُـٰٓ', $k);
+   $k = str_replace('ن', 'نَٰـُـٰٓ', $k);
+   $k = str_replace('م', 'مَٰـُـٰٓ', $k);
+   $k = str_replace('ك', 'ڪَٰـُـٰٓ', $k);
+   $k = str_replace('ط', 'طَٰـُـٰٓ', $k);
+   $k = str_replace('ظ', 'ظَٰـُـٰٓ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "ۿۿہ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]);
+   $k = $text;
+   $k = str_replace('ض', 'ضِٰـۛৣـ', $k);
+   $k = str_replace('ص', 'صِٰـۛৣـ', $k);
+   $k = str_replace('ث', 'ثِٰـۛৣـ', $k);
+   $k = str_replace('ق', 'قِٰـۛৣـ', $k);
+   $k = str_replace('ف', 'فِٰ͒ـۛৣـ', $k);
+   $k = str_replace('غ', 'غِٰـۛৣـ', $k);
+   $k = str_replace('ع', 'عِٰـۛৣـ', $k);
+   $k = str_replace('خ', 'خِٰ̐ـۛৣـ', $k);
+   $k = str_replace('ح', 'حِٰـۛৣـ', $k);
+   $k = str_replace('ج', 'جِٰـۛৣـ', $k);
+   $k = str_replace('ش', 'شِٰـۛৣـ', $k);
+   $k = str_replace('س', 'سِٰـۛৣـ', $k);
+   $k = str_replace('ي', 'يِٰـۛৣـ', $k);
+   $k = str_replace('ب', 'بِٰـۛৣـ', $k);
+   $k = str_replace('ل', 'لِٰـۛৣـ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تِٰـۛৣـ', $k);
+   $k = str_replace('ن', 'نِٰـۛৣـ', $k);
+   $k = str_replace('م', 'مِٰـۛৣـ', $k);
+   $k = str_replace('ك', 'ڪِٰـۛৣـ', $k);
+   $k = str_replace('ط', 'طِٰـۛৣـ', $k);
+   $k = str_replace('ظ', 'ظِٰـۛৣـ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "໋۠هہؚ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+   $k = $text;
+   $k = str_replace('ض', 'ض֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ص', 'ص֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ث', 'ث֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ق', 'ق֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ف', 'ف͒֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('غ', 'غ֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ع', 'ع֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('خ', 'خ̐֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ح', 'ح֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ج', 'ج֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ش', 'ش֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('س', 'س֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ي', 'ي֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ب', 'ب֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ل', 'ل֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'ت֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ن', 'ن֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('م', 'م֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ك', 'ڪ֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ط', 'ط֠ــۢ͜ـٰ̲ـ', $k);
+   $k = str_replace('ظ', 'ظ֠ــۢ͜ـٰ̲ـ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "໋۠هہؚ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+   $k = $text;
+   $k = str_replace('ض', 'ض๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ص', 'ص๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ث', 'ث๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ق', 'ق๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ف', 'ف๋͒͜ـ❀๋͜ـ', $k);
+   $k = str_replace('غ', 'غ๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ع', 'ع๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('خ', 'خ๋̐͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ح', 'ح๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ج', 'ج๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ش', 'ش๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('س', 'س๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ي', 'ي๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ب', 'ب๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ل', 'ل๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'ت๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ن', 'ن๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('م', 'م๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ك', 'ڪ๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ط', 'ط๋͜ـ❀๋͜ـ', $k);
+   $k = str_replace('ظ', 'ظ๋͜ـ❀๋͜ـ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "໋۠هہؚ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]); 
+   $k = $text;
+   $k = str_replace('ض', 'ضـۘ❈ـۘ', $k);
+   $k = str_replace('ص', 'صـۘ❈ـۘ', $k);
+   $k = str_replace('ث', 'ثـۘ❈ـۘ', $k);
+   $k = str_replace('ق', 'قـۘ❈ـۘ', $k);
+   $k = str_replace('ف', 'ف͒ـۘ❈ـۘ', $k);
+   $k = str_replace('غ', 'غـۘ❈ـۘ', $k);
+   $k = str_replace('ع', 'عـۘ❈ـۘ', $k);
+   $k = str_replace('خ', 'خ̐ـۘ❈ـۘ', $k);
+   $k = str_replace('ح', 'حـۘ❈ـۘ', $k);
+   $k = str_replace('ج', 'جـۘ❈ـۘ', $k);
+   $k = str_replace('ش', 'شـۘ❈ـۘ', $k);
+   $k = str_replace('س', 'سـۘ❈ـۘ', $k);
+   $k = str_replace('ي', 'يـۘ❈ـۘ', $k);
+   $k = str_replace('ب', 'بـۘ❈ـۘ', $k);
+   $k = str_replace('ل', 'لـۘ❈ـۘ', $k);
+   $k = str_replace('ا', 'آ', $k);
+   $k = str_replace('ت', 'تـۘ❈ـۘ', $k);
+   $k = str_replace('ن', 'نـۘ❈ـۘ', $k);
+   $k = str_replace('م', 'م', $k);
+   $k = str_replace('ك', 'ڪـۘ❈ـۘ', $k);
+   $k = str_replace('ط', 'طـۘ❈ـۘ', $k);
+   $k = str_replace('ظ', 'ظـۘ❈ـۘ', $k);
+  $k = str_replace('ء', 'ء', $k);
+   $k = str_replace('ؤ', 'ؤ', $k);
+   $k = str_replace('ر', 'ر', $k);
+   $k = str_replace('ى', 'ى', $k);
+   $k = str_replace('ز', 'ز', $k);
+   $k = str_replace('و', 'ﯛ̲୭', $k);
+   $k = str_replace("ه", "໋۠هہؚ", $k);
+   bot('sendMessage',[
+        'chat_id'=>$chat_id,
+        'text'=>$k." ".$smile
+   ]);
+} 
+if($text && $text !=="/start"){
+$zh= json_decode(file_get_contents("https://tshake.tk/TshakeApi/zh.php?name=".urlencode($text)));
+$zh1 = $zh->zh1;$zh2 = $zh->zh2;$zh3 = $zh->zh3; 
+bot('sendmessage', ['chat_id' => $chat_id,'text' =>"$zh1",]);
+bot('sendmessage', ['chat_id' => $chat_id,'text' =>"$zh2",]);
+bot('sendmessage', ['chat_id' => $chat_id,'text' =>"$zh3",]);}
+
+if ($text != "/start") {
+  $get = file_get_contents("https://rueslinks.000webhostapp.com/font.php?text=$text");
+  bot('sendMessage',[
+    'chat_id'=>$chat_id,
+    'text'=>"$get", 
+'parse_mode'=>'markdown'
+    ]);
+} 
+if ( $data == "api" ) {
+    bot('EditMessageText',['text'=>"Zhrfa ~ زغرفة نصوص \n _Arab and English decoration with 12 different results_ \n\n *Ex* http://vip-team.ml/Zhrfa/Api.php?Name=ViP-Team \n\n `My Website` : http://vip-team.ml",'chat_id'=>$chat_id2,'message_id'=>$message_id2,'parse_mode'=>"markdown",'reply_markup'=>json_encode(['inline_keyboard'=>['text'=>"php88 📬",'url'=>"https://t.me/php88"]])]);
+}
+if($text !="/start"){
+        $zhrfa = json_decode(file_get_contents("http://vip-team.ml/Zhrfa/Api.php?Name=".urlencode($text)))->Zhrfa;
+            for($i = 0; $i <count($zhrfa); $i++){
+                bot('SendMessage',['text'=>" - ".$zhrfa[$i],'chat_id'=>$chat_id]);
+            }
+}
+$inlineq = $update->inline_query->query;
+if($inlineq == ""){
+    bot('answerInlineQuery',[
+    'inline_query_id'=>$update->inline_query->id,
+    'cache_time'=>'300',
+    'results' => json_encode([[
+    'type'=>'article',
+    'id'=>base64_encode(rand(5,555)),
+    'title'=>' ⚠️',
+    'thumb_url'=>"https://hrkles.000webhostapp.com/user.png",
+    'description'=>"   📡 .",
+    'input_message_content'=>['parse_mode'=>'HTML','message_text'=>"
+    • اهلا بك فى بوت الزخرفه 🔱 •
+• البوت الاول ؏ التلكرام 1️⃣  •
+• تابع قناة البوت لتتمكن من الاستخدام ⚡️ •
+    "],
+    'reply_markup'=>['inline_keyboard'=>[
+    [
+    ['text'=>'phpfelis📬','url'=>'https://t.me/php88']
+    ]
+    ]]
+    ]])
+    ]);
+    }
+    
+if ($inlineq) {
+$zhrfa = json_decode(file_get_contents("http://vip-team.ml/Zhrfa/Api.php?Name=".urlencode($inlineq)))->Zhrfa;
+$z0 = $zhrfa[0]; $z1 = $zhrfa[1]; $z2 = $zhrfa[2]; $z3 = $zhrfa[3]; $z4 = $zhrfa[4]; $z5 = $zhrfa[5]; $z6 = $zhrfa[6]; $z7 = $zhrfa[7]; $z8 = $zhrfa[8]; $z9 = $zhrfa[9]; $z10 = $zhrfa[10]; $z11 = $zhrfa[11];
+bot('answerInlineQuery',[
+'inline_query_id'=>$update->inline_query->id,
+'results' => json_encode([[
+'type'=>'article',
+'id'=>base64_encode(rand(5,555)),
+'title'=>"- 1 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z0 اضغط هنا 🔱 - ",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z0",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 2 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z1 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z1",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 3 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z2 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z2",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 4 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z3 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z3",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 5 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z4 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z4",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 6 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z5 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z5",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 7 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z6 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z6",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 8 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z7 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z7",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 9 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z8 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z8 ",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 10 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z9 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z9",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 11 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z10 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z10",
+'disable_web_page_preview'=>true,
+],
+],[
+'type' => 'article',
+'id' => base64_encode(rand(5,555)),
+'title'=>"- 12 الزغرفة الـ  📬 .",
+'description'=>"- لرؤية الزغرفة هذه : $z11 اضغط هنا 🔱 -",
+'input_message_content'=>[
+'parse_mode'=>'markdown',
+'message_text'=>"$z11",
+'disable_web_page_preview'=>true,
+],
+],
+])
+]);
+} 
